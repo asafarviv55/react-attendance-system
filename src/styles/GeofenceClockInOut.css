@@ -1,0 +1,167 @@
+.geofence-clock-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.geofence-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.geofence-card h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.location-info {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.location-info h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.location-info p {
+  margin: 0;
+  line-height: 1.8;
+  color: #666;
+}
+
+.geofence-status {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.geofence-status.within {
+  background: #d4edda;
+  border: 2px solid #28a745;
+}
+
+.geofence-status.outside {
+  background: #f8d7da;
+  border: 2px solid #dc3545;
+}
+
+.status-icon {
+  font-size: 48px;
+  margin-right: 20px;
+}
+
+.geofence-status.within .status-icon {
+  color: #28a745;
+}
+
+.geofence-status.outside .status-icon {
+  color: #dc3545;
+}
+
+.status-text strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.status-text p {
+  margin: 0;
+  color: #666;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-clock-in {
+  background: #28a745;
+  color: white;
+}
+
+.btn-clock-in:hover:not(:disabled) {
+  background: #218838;
+}
+
+.btn-clock-out {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-clock-out:hover:not(:disabled) {
+  background: #c82333;
+}
+
+.btn-refresh {
+  width: 100%;
+  background: #007bff;
+  color: white;
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

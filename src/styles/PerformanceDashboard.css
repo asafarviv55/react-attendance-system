@@ -1,0 +1,196 @@
+.performance-dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.period-selector {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 15px;
+  transition: transform 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-icon {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}
+
+.metric-icon.attendance {
+  background: #e3f2fd;
+}
+
+.metric-icon.punctuality {
+  background: #fff3e0;
+}
+
+.metric-icon.hours {
+  background: #f3e5f5;
+}
+
+.metric-icon.overtime {
+  background: #e8f5e9;
+}
+
+.metric-icon.leaves {
+  background: #fff9c4;
+}
+
+.metric-icon.absences {
+  background: #ffebee;
+}
+
+.metric-content {
+  flex: 1;
+}
+
+.metric-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #999;
+}
+
+.performance-chart {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.performance-chart h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+}
+
+.trend-bars {
+  display: flex;
+  gap: 15px;
+  height: 200px;
+  align-items: flex-end;
+}
+
+.trend-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar-fill {
+  width: 100%;
+  background: linear-gradient(to top, #2196f3, #64b5f6);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s;
+}
+
+.bar-label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.performance-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.detail-section {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detail-section h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detail-section li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-section li:last-child {
+  border-bottom: none;
+}
+
+.strength-item {
+  color: #4caf50;
+}
+
+.improvement-item {
+  color: #ff9800;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
+}
