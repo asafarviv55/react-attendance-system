@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 const AuthContext = createContext();
 
@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     userName: localStorage.getItem('userName') || null,
     role: localStorage.getItem('role') || null,
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,11 +20,12 @@ const AuthProvider = ({ children }) => {
     if (token && userId && userName && role) {
       setAuth({ token, userId, userName, role });
     }
+    setLoading(false);
   }, []);
 
   const signIn = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/signin', { email, password });
+      const response = await api.post('/auth/signin', { email, password });
       const { token, userId, userName, roleName } = response.data;
       setAuth({ token, userId, userName, role: roleName });
       localStorage.setItem('token', token);
@@ -32,8 +34,8 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('role', roleName);
       return { success: true };
     } catch (error) {
-      console.error('Sign in error:', error);
-      return { success: false, message: 'Sign in failed' };
+      const message = error.response?.data?.message || 'Sign in failed. Please check your credentials.';
+      return { success: false, message };
     }
   };
 
@@ -45,9 +47,9 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('role');
   };
 
-  const signUp = async (email, password, roleName) => {
+  const signUp = async (email, password, roleName = 'employee') => {
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', { email, password, roleName });
+      const response = await api.post('/auth/signup', { email, password, roleName });
       const { token, userId, userName } = response.data;
       setAuth({ token, userId, userName, role: roleName });
       localStorage.setItem('token', token);
@@ -56,13 +58,21 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('role', roleName);
       return { success: true };
     } catch (error) {
-      console.error('Sign up error:', error);
-      return { success: false, message: 'Sign up failed' };
+      const message = error.response?.data?.message || 'Sign up failed. Please try again.';
+      return { success: false, message };
     }
   };
 
+  const isAuthenticated = () => {
+    return !!auth.token;
+  };
+
+  const hasRole = (roles) => {
+    return roles.includes(auth.role);
+  };
+
   return (
-    <AuthContext.Provider value={{ auth, signIn, signOut, signUp }}>
+    <AuthContext.Provider value={{ auth, loading, signIn, signOut, signUp, isAuthenticated, hasRole }}>
       {children}
     </AuthContext.Provider>
   );

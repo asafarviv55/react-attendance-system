@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# React Attendance System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React frontend for employee attendance management with location-based clock-in/out, leave management, and role-based access control.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Employee Features
+- **Clock In/Out** - Location-based with real-time clock display
+- **Dashboard** - Personal attendance statistics and recent records
+- **Leave Requests** - Submit and track leave applications
+- **Attendance Correction** - Request corrections for past attendance
+- **Profile Management** - Update personal information
 
-### `npm start`
+### Manager Features
+- **Approve/Deny Leaves** - Manage team leave requests
+- **Correction Requests** - Handle attendance correction requests
+- **Location Management** - Configure authorized clock-in locations
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Admin Features
+- **User Management** - Create, edit, delete users
+- **Bulk Import** - Import users from CSV
+- All manager features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Framework**: React 18
+- **Routing**: React Router v6
+- **HTTP Client**: Axios with interceptors
+- **Date Handling**: date-fns
+- **Styling**: Bootstrap 5
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+```bash
+# Clone the repository
+git clone https://github.com/asafarviv55/react-attendance-system.git
+cd react-attendance-system
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Set up environment
+cp .env.example .env
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Start development server
+npm start
+```
 
-### `npm run eject`
+## Environment Variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+PORT=3000
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+src/
+├── components/
+│   ├── SignIn.js              # Login page
+│   ├── SignUp.js              # Registration
+│   ├── Dashboard.js           # Stats & recent attendance
+│   ├── ClockInOut.js          # Clock in/out with location
+│   ├── AttendanceReports.js   # View attendance history
+│   ├── LeaveRequest.js        # Submit leave requests
+│   ├── ManageLeaveRequests.js # Approve/deny leaves
+│   ├── ManageUsers.js         # User CRUD (admin)
+│   ├── ManageLocations.js     # Location config
+│   ├── Profile.js             # User profile
+│   └── PrivateRoute.js        # Route protection
+├── context/
+│   └── AuthContext.js         # Authentication state
+├── services/
+│   └── api.js                 # Axios configuration
+└── App.js                     # Routes & layout
+```
 
-## Learn More
+## Role-Based Access
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Feature | Employee | Manager | Admin |
+|---------|----------|---------|-------|
+| Clock In/Out | ✅ | ❌ | ❌ |
+| View Dashboard | ✅ | ✅ | ✅ |
+| Request Leave | ✅ | ❌ | ❌ |
+| Manage Leaves | ❌ | ✅ | ✅ |
+| Manage Users | ❌ | ❌ | ✅ |
+| Manage Locations | ❌ | ✅ | ✅ |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Docker
 
-### Code Splitting
+```bash
+# Build image
+docker build -t react-attendance-system .
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Run container
+docker run -p 80:80 react-attendance-system
+```
 
-### Analyzing the Bundle Size
+## Business Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Real-time Clock** - Live time display on clock-in page
+- **Location Verification** - GPS-based attendance validation
+- **Dashboard Statistics** - Present days, leave days, avg hours
+- **Recent Attendance** - Quick view of last 5 records
+- **Role-based Navigation** - Dynamic menu based on user role
+- **Session Management** - Auto-logout on token expiration
 
-### Making a Progressive Web App
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Requires backend running at `REACT_APP_API_URL` with endpoints:
+- `/auth/signin`, `/auth/signup` - Authentication
+- `/attendance/clockin`, `/attendance/clockout` - Attendance
+- `/attendance/reports` - Attendance history
+- `/leave/requests` - Leave management
+- `/users` - User management (admin)
 
-### Advanced Configuration
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
